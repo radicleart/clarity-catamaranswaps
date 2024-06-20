@@ -28,39 +28,39 @@ export const errors = {
 };
 
 
-export function createNftSwap(amountA:bigint, nftId:bigint, swaperA:string, swaperB:string, nft:string, fees:string) {
-  const mintResponse = txOk(wrappedBitcoin.mintTokens(amountA + (amountA/100n), swaperA), deployer);
+export function createNftSwap(amountA:bigint, nftId:bigint, swapperA:string, swapperB:string, nft:string, fees:string) {
+  const mintResponse = txOk(wrappedBitcoin.mintTokens(amountA + (amountA/100n), swapperA), deployer);
   expect(mintResponse.value).toBe(true);
-  let receipt = rov(wrappedBitcoin.getBalance(swaperA), swaperA);
+  let receipt = rov(wrappedBitcoin.getBalance(swapperA), swapperA);
   expect(receipt.value).toEqual(amountA + (amountA/100n));
-  const response = txOk(xbtcNftSwap.createSwap(amountA, nftId, (swaperB !== 'none') ? swaperB : null, nft, fees), swaperA);
+  const response = txOk(xbtcNftSwap.createSwap(amountA, nftId, (swapperB !== 'none') ? swapperB : null, nft, fees), swapperA);
   
   // post condition - alices xbtc transerred to contarct
-  receipt = rov(wrappedBitcoin.getBalance(swaperA), swaperA);
+  receipt = rov(wrappedBitcoin.getBalance(swapperA), swapperA);
   expect(receipt.value).toEqual(0n);
   
   return response;
 }
 
-export function submitNftSwap(swapId:bigint, swaperA:string, swaperB:string, nft:string, fees:string) {
-  const mintResponse = txOk(funNft.mint(), swaperB);
+export function submitNftSwap(swapId:bigint, swapperA:string, swapperB:string, nft:string, fees:string) {
+  const mintResponse = txOk(funNft.mint(), swapperB);
   expect(mintResponse.value).toBe(true);
-  let owner = rov(funNft.getOwner(1n), swaperB);
-  expect(owner.value).toEqual(swaperB);
-  // not working in funnft contract... const value = rov(funNft.getBalance(swaper), swaper);
-  const response = txOk(xbtcNftSwap.submitSwap(swapId, nft, fees), swaperB);
+  let owner = rov(funNft.getOwner(1n), swapperB);
+  expect(owner.value).toEqual(swapperB);
+  // not working in funnft contract... const value = rov(funNft.getBalance(swapper), swapper);
+  const response = txOk(xbtcNftSwap.submitSwap(swapId, nft, fees), swapperB);
   return response;
 }
 
-export function createFTSwap(amountA:bigint, amountB:bigint, swaperA:string, swaperB:string, tokenB:string, fees:string) {
-  const mintResponse = txOk(wrappedBitcoin.mintTokens(amountA + (amountA/100n), swaperA), deployer);
+export function createFTSwap(amountA:bigint, amountB:bigint, swapperA:string, swapperB:string, tokenB:string, fees:string) {
+  const mintResponse = txOk(wrappedBitcoin.mintTokens(amountA + (amountA/100n), swapperA), deployer);
   expect(mintResponse.value).toBe(true);
-  let receipt = rov(wrappedBitcoin.getBalance(swaperA), swaperA);
+  let receipt = rov(wrappedBitcoin.getBalance(swapperA), swapperA);
   expect(receipt.value).toEqual(amountA + (amountA/100n));
-  const response = txOk(xbtcFtSwap.createSwap(amountA, amountB, (swaperB !== 'none') ? swaperB : null, tokenB, fees), swaperA);
+  const response = txOk(xbtcFtSwap.createSwap(amountA, amountB, (swapperB !== 'none') ? swapperB : null, tokenB, fees), swapperA);
   
   // post condition - alices xbtc transerred to contarct
-  receipt = rov(wrappedBitcoin.getBalance(swaperA), swaperA);
+  receipt = rov(wrappedBitcoin.getBalance(swapperA), swapperA);
   expect(receipt.value).toEqual(0n);
   
   return response;
