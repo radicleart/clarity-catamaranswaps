@@ -1,9 +1,11 @@
 {
-  "name": "xbtc-swaps",
+  "name": "catamaran-btc",
   "version": "1.0.0",
-  "description": "Swap wrapped bitcoin for other assets.",
-  "type": "module",
-  "private": true,
+  "description": "swap btc for stacks assets",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
   "scripts": {
     "test": "vitest run",
     "watch": "vitest watch",
@@ -11,8 +13,24 @@
     "test:report": "vitest run -- --coverage --costs",
     "test:watch": "chokidar \"tests/**/*.ts\" \"contracts/**/*.clar\" -c \"npm run test:report\""
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/friedger/clarity-catamaranswaps.git"
+  },
+  "keywords": [
+    "bitcoin",
+    "stacks",
+    "clarity",
+    "swaps",
+    "layer1",
+    "layer2"
+  ],
+  "author": "friedger",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/friedger/clarity-catamaranswaps/issues"
+  },
+  "homepage": "https://github.com/friedger/clarity-catamaranswaps#readme",
   "dependencies": {
     "@clarigen/core": "^2.0.6",
     "@clarigen/test": "^2.0.6",

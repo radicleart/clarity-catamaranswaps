@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="1" failures="1" errors="0" time="1.704">
+    <testsuite name="tests/btc-ft-swap.test.ts" timestamp="2024-06-22T10:10:40.766Z" hostname="mikes-macbook" tests="1" failures="1" errors="0" skipped="0" time="0.017">
+        <testcase classname="tests/btc-ft-swap.test.ts" name="submit swaps &gt; Can&apos;t submit a swap for a closed swap" time="0.016">
+            <failure message="Cannot read properties of undefined (reading &apos;identifier&apos;)" type="TypeError">
+TypeError: Cannot read properties of undefined (reading &apos;identifier&apos;)
+ ❯ tests/btc-ft-swap.test.ts:19:71
+            </failure>
+        </testcase>
+    </testsuite>
+</testsuites>
